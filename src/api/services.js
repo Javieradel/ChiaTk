@@ -4,8 +4,6 @@ export const stateService = {
   items: [],
   loading: false,
   filters: {},
-  showSlideOverCrud: false,
-  showDeleteModalCrud: false
 }
 
 export const mutationsService = {
