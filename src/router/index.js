@@ -1,11 +1,10 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-
-import HelloWorld from '/src/components/HelloWorld.vue'
+import PublicView from '/src/components/layouts/PublicView.vue'
 
 const routes = [
   {
     path: '/',
-    component: HelloWorld,
+    component: PublicView,
     // children: [
     //   {
     //     path: '/',
