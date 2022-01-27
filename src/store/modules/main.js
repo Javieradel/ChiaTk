@@ -2,7 +2,10 @@
 const state = () => {
     return {
       user: { },
-      tokenUser: undefined
+      tokenUser: undefined,
+      loading: false,
+      showModal: false,
+      dataModal: { }
     }
   }
   
@@ -19,6 +22,18 @@ const state = () => {
   
   // mutations
   const mutations = {
+    SHOW_LOADER(state, payload){
+      state.loading = !!payload
+    },
+    SHOW_MODAL(state, payload){
+      payload.show ?
+        state.dataModal = payload.data
+        :
+        // delete data
+        state.dataModal = { }
+
+      state.showModal = !!payload.show
+    },
     SET_USER(state, payload) {
       state.user = payload
     },
