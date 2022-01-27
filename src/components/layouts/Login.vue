@@ -49,29 +49,65 @@
     import store from '../../store';
     import DataService from '../../api/services';
     import HeaderComponentVue from '../shared/HeaderComponent.vue';
-    
+    import router from '../../router';
 
-    const email = ref('correo@correo.com')
-    const firstName = ref('noimporta')
-    const lastName = ref('siimporta')
+    const email = ref('correo_@correo.com')
+    const firstName = ref('test')
+    const lastName = ref('test')
 
     const registro = ref(null) 
 
-    function signIn(payload){
-        store.commit('main/SHOW_LOADER',true)
-        DataService.create({path:'user/create', payload})
+    function showError(data){
+      console.log(data);
+      store.commit('main/SHOW_MODAL',
+      { show:true, 
+        data:{
+          title: data.title,
+          type: data.type ||'warning',
+          message: data.message}
+      })
+    }
+    function showSucces(data){
+      store.commit('main/SHOW_MODAL',
+      { show:true, 
+        data:{
+          title:data.title,
+          type:data.type,
+          message:data.message}
+      })
+    }
+    async function signIn(payload){
+      store.commit('main/SHOW_LOADER',true)
+      const data = {
+          email:payload.email.value,
+          lastName:payload.firstName.value,
+          firstName:payload.lastName.value
+      }
+      await DataService.create({path:'user/create', data})
         .then(data => {
-            console.log('success',data);
-            store.commit('main/SHOW_LOADER',false)
-        }, data => { 
-            console.error('reject',data.message)
-            store.commit('main/SHOW_LOADER',false)
+          store.commit('main/SET_USER', data)
+          store.commit('main/SHOW_LOADER', false)
+          showSucces({title:'¡Registro Éxitoso!', type: 'done', message:'Registrado con éxito\n redireccionando...' })
+          }, 
+        error => {
+          console.log(error.response)
+          store.commit('main/SHOW_LOADER',false)
+            showError({
+              title: `Error, codigo: ${error.response.status}`,
+              type: 'warning',
+              message: 'El correo ya está en uso'
             })
+          })
         .catch(
             error => {
-                console.log('error',error)
-                store.commit('main/SHOW_LOADER',false)
-                }
+              console.log(error)
+              store.commit('main/SHOW_LOADER',false)
+              showError({
+              title: `Error Crítico, codigo: ${error.message}`,
+              type: 'warning',
+              message: ''
+            })
+              }
         )
     }
     function onSubmit(){

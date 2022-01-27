@@ -35,6 +35,7 @@ const state = () => {
       state.showModal = !!payload.show
     },
     SET_USER(state, payload) {
+      window.localStorage.setItem('user',JSON.stringify(payload))
       state.user = payload
     },
     SAVE_TOKEN(state, token) {

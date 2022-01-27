@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-md q-gutter-sm">
-    <q-dialog v-model="persistent" persistent transition-show="scale" transition-hide="scale">
+    <q-dialog v-model="show" persistent transition-show="scale" transition-hide="scale">
       <q-card style="width: 300px">
         
         <q-card-section class="q-pt-lg text-center">
@@ -41,7 +41,7 @@
 <script setup>
 import { computed } from 'vue'
 import store from '../../store';
-  const persistent = computed( () => store.state.main.showModal)
+  const show = computed( () => store.state.main.showModal)
   const title = computed( () => store.state.main.dataModal.title)
   const type  = computed( () => store.state.main.dataModal.type)
   const message = computed( () => store.state.main.dataModal.message)

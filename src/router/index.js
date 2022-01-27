@@ -5,18 +5,18 @@ const routes = [
   {
     path: '/',
     component: PublicView,
+    name:'Home'
     // children: [
     //   {
     //     path: '/',
     //     name: 'Home',
     //     component: HelloWorld
     //   },
-      // NEW ROUTES
-      //...routesOrganizations,
    // ]
   },
   {
     path: '/login',
+    name: 'Login',
     component: Login,
     // children: [
     //   {
@@ -24,19 +24,8 @@ const routes = [
     //     name: 'Home',
     //     component: HelloWorld
     //   },
-      // NEW ROUTES
-      //...routesOrganizations,
    // ]
   },
-  // {
-  //   path: '/error-page',
-  //   name: 'error-page',
-  //   component: ErrorPage
-  // },
-  // {
-  //   path: '/:pathMatch(.*)*',
-  //   component: ErrorPage
-  // }
 ]
 const router = createRouter({
   history: createWebHashHistory(),
