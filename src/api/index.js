@@ -1,8 +1,8 @@
 import axios from 'axios'
 import API from '/env/enviroment'
-const {BASE, API_KEY } = API
+const {baseURL, API_KEY } = API
 const api = axios.create({
-  BASE,
+  baseURL,
   headers: {
     'Content-Type': 'application/json',
     api_key: API_KEY

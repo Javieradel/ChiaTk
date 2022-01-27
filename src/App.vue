@@ -1,10 +1,12 @@
 <script setup>
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
+import loaderVue from './components/shared/loader.vue';
 </script>
 
 <template>
   <router-view></router-view>
+  <loaderVue></loaderVue>
 </template>
 
 <style lang="scss">
@@ -13,7 +15,5 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: $_white;
-  background-color: $_dark;
 }
 </style>
